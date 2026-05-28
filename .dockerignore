@@ -1,0 +1,14 @@
+# Ignorar configuraciones del IDE (IntelliJ, VS Code, etc.)
+**/.idea/
+**/.vscode/
+**/*.iml
+**/.classpath
+**/.project
+**/.settings/
+
+# Ignorar la carpeta de compilación local de Maven (¡Muy importante!)
+**/target/
+
+# Sistema operativo
+**/.DS_Store
+**/Thumbs.db
