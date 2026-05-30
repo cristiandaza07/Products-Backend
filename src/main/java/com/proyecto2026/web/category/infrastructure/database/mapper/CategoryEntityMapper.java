@@ -13,4 +13,8 @@ public interface CategoryEntityMapper {
     @Mapping(target = "products", ignore = true)
     Category mapToCategory(CategoryEntity categoryEntity);
 
+    //@Mapping(target = "productDetailEntity", source = "productDetail")
+    @Mapping(target = "products", ignore = true)
+    CategoryEntity mapToCategoryEntity(Category category);
+
 }

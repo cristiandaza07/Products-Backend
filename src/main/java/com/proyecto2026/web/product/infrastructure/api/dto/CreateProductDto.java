@@ -23,4 +23,6 @@ public class CreateProductDto {
 
     @NotNull
     private MultipartFile file;
+
+
 }

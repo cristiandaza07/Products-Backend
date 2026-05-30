@@ -1,4 +1,4 @@
-package com.proyecto2026.web.review.infrastructure;
+package com.proyecto2026.web.review.infrastructure.database.entity;
 
 import com.proyecto2026.web.product.infrastructure.database.entity.ProductEntity;
 import jakarta.persistence.*;

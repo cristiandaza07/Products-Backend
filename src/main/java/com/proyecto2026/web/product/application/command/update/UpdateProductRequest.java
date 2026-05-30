@@ -1,7 +1,7 @@
 package com.proyecto2026.web.product.application.command.update;
 
 import com.proyecto2026.web.common.application.mediator.Request;
-import com.proyecto2026.web.review.domain.Review;
+import com.proyecto2026.web.review.domain.entity.Review;
 import lombok.Data;
 
 @Data

@@ -2,6 +2,7 @@ package com.proyecto2026.web.category.infrastructure.database;
 
 import com.proyecto2026.web.category.domain.entity.Category;
 import com.proyecto2026.web.category.domain.port.CategoryRepository;
+import com.proyecto2026.web.category.infrastructure.database.entity.CategoryEntity;
 import com.proyecto2026.web.category.infrastructure.database.mapper.CategoryEntityMapper;
 import com.proyecto2026.web.category.infrastructure.database.repository.QueryCategoryRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,5 +24,12 @@ public class CategoryRepositoryImpl implements CategoryRepository {
     @Override
     public Optional<Category> findById(Long id) {
         return queryCategoryRepository.findById(id).map(categoryEntityMapper::mapToCategory);
+    }
+
+    @Override
+    public Category save(Category category) {
+        CategoryEntity categoryEntity = categoryEntityMapper.mapToCategoryEntity(category);
+        CategoryEntity save = queryCategoryRepository.save(categoryEntity);
+        return categoryEntityMapper.mapToCategory(save);
     }
 }

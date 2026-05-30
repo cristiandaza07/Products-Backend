@@ -8,6 +8,7 @@ import com.proyecto2026.web.product.domain.entity.Product;
 import com.proyecto2026.web.product.domain.exception.ProductNotFoundException;
 import com.proyecto2026.web.product.domain.port.ProductRepository;
 import com.proyecto2026.web.productDetail.domian.ProductDetail;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 @Slf4j
+@Transactional(rollbackOn = Exception.class)
 public class UpdateProductHandler implements RequestHandler<UpdateProductRequest, Void> {
 
     private final ProductRepository productRepository;

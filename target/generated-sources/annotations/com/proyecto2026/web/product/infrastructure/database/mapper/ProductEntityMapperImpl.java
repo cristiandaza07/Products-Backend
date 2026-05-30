@@ -6,8 +6,8 @@ import com.proyecto2026.web.product.domain.entity.Product;
 import com.proyecto2026.web.product.infrastructure.database.entity.ProductEntity;
 import com.proyecto2026.web.productDetail.domian.ProductDetail;
 import com.proyecto2026.web.productDetail.infrastructure.ProductDetailEntity;
-import com.proyecto2026.web.review.domain.Review;
-import com.proyecto2026.web.review.infrastructure.ReviewEntity;
+import com.proyecto2026.web.review.domain.entity.Review;
+import com.proyecto2026.web.review.infrastructure.database.entity.ReviewEntity;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-05-28T16:31:20-0500",
+    date = "2026-05-29T22:00:56-0500",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.10 (Eclipse Adoptium)"
 )
 @Component

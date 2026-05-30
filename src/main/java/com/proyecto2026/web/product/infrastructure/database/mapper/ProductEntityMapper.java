@@ -4,8 +4,8 @@ import com.proyecto2026.web.category.domain.entity.Category;
 import com.proyecto2026.web.category.infrastructure.database.entity.CategoryEntity;
 import com.proyecto2026.web.product.domain.entity.Product;
 import com.proyecto2026.web.product.infrastructure.database.entity.ProductEntity;
-import com.proyecto2026.web.review.domain.Review;
-import com.proyecto2026.web.review.infrastructure.ReviewEntity;
+import com.proyecto2026.web.review.domain.entity.Review;
+import com.proyecto2026.web.review.infrastructure.database.entity.ReviewEntity;
 import org.mapstruct.*;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING, unmappedTargetPolicy = ReportingPolicy.ERROR)

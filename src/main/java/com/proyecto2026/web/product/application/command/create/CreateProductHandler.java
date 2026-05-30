@@ -4,6 +4,7 @@ import com.proyecto2026.web.common.application.mediator.RequestHandler;
 import com.proyecto2026.web.common.infrastructure.util.FileUtils;
 import com.proyecto2026.web.product.domain.entity.Product;
 import com.proyecto2026.web.product.domain.port.ProductRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 @Slf4j
+@Transactional(rollbackOn = Exception.class)
 public class CreateProductHandler implements RequestHandler<CreateProductRequest, CreateProductResponse> {
 
     private final ProductRepository productRepository;
@@ -36,6 +38,7 @@ public class CreateProductHandler implements RequestHandler<CreateProductRequest
 
     @Override
     public Class<CreateProductRequest> getRequestType() {
+
         return CreateProductRequest.class;
     }
 }

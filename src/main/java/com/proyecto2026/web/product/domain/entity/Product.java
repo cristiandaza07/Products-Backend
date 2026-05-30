@@ -2,7 +2,7 @@ package com.proyecto2026.web.product.domain.entity;
 
 import com.proyecto2026.web.category.domain.entity.Category;
 import com.proyecto2026.web.productDetail.domian.ProductDetail;
-import com.proyecto2026.web.review.domain.Review;
+import com.proyecto2026.web.review.domain.entity.Review;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

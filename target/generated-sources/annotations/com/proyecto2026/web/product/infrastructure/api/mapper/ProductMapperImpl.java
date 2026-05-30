@@ -8,7 +8,7 @@ import com.proyecto2026.web.product.infrastructure.api.dto.ProductDto;
 import com.proyecto2026.web.product.infrastructure.api.dto.ReviewDto;
 import com.proyecto2026.web.product.infrastructure.api.dto.UpdateProductDto;
 import com.proyecto2026.web.productDetail.domian.ProductDetail;
-import com.proyecto2026.web.review.domain.Review;
+import com.proyecto2026.web.review.domain.entity.Review;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-05-28T16:31:20-0500",
+    date = "2026-05-29T22:00:56-0500",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.10 (Eclipse Adoptium)"
 )
 @Component

@@ -8,7 +8,7 @@ import com.proyecto2026.web.product.infrastructure.api.dto.CreateProductDto;
 import com.proyecto2026.web.product.infrastructure.api.dto.ProductDto;
 import com.proyecto2026.web.product.infrastructure.api.dto.ReviewDto;
 import com.proyecto2026.web.product.infrastructure.api.dto.UpdateProductDto;
-import com.proyecto2026.web.review.domain.Review;
+import com.proyecto2026.web.review.domain.entity.Review;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;

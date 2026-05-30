@@ -2,7 +2,7 @@ package com.proyecto2026.web.product.infrastructure.database.entity;
 
 import com.proyecto2026.web.category.infrastructure.database.entity.CategoryEntity;
 import com.proyecto2026.web.productDetail.infrastructure.ProductDetailEntity;
-import com.proyecto2026.web.review.infrastructure.ReviewEntity;
+import com.proyecto2026.web.review.infrastructure.database.entity.ReviewEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 
