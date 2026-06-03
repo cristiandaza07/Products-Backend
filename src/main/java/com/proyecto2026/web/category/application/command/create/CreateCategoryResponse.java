@@ -1,4 +1,4 @@
-package com.proyecto2026.web.category.application.command;
+package com.proyecto2026.web.category.application.command.create;
 
 import com.proyecto2026.web.category.domain.entity.Category;
 import lombok.AllArgsConstructor;

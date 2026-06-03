@@ -24,5 +24,13 @@ public class CreateProductDto {
     @NotNull
     private MultipartFile file;
 
+    //ProductDetail fields
 
+    @NotBlank
+    private String provider;
+    @NotBlank
+    private String warranty;
+    @NotBlank
+    @Length(min = 8, max = 255)
+    private String specifications;
 }

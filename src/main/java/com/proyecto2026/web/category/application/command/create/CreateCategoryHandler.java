@@ -1,6 +1,7 @@
-package com.proyecto2026.web.category.application.command;
+package com.proyecto2026.web.category.application.command.create;
 
 import com.proyecto2026.web.category.domain.entity.Category;
+import com.proyecto2026.web.category.domain.exception.CategoryAlreadyExistsException;
 import com.proyecto2026.web.category.domain.port.CategoryRepository;
 import com.proyecto2026.web.common.application.mediator.RequestHandler;
 import jakarta.transaction.Transactional;
@@ -18,6 +19,13 @@ public class CreateCategoryHandler implements RequestHandler<CreateCategoryReque
 
     @Override
     public CreateCategoryResponse handle(CreateCategoryRequest request) {
+
+        boolean exists = categoryRepository.findByName(request.getName()).isPresent();
+
+        if (exists) {
+            throw new CategoryAlreadyExistsException(request.getName());
+        }
+
         Category category = Category.builder()
                 .name(request.getName())
                 .build();

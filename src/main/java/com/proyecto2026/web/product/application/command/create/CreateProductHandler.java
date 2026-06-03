@@ -4,6 +4,7 @@ import com.proyecto2026.web.common.application.mediator.RequestHandler;
 import com.proyecto2026.web.common.infrastructure.util.FileUtils;
 import com.proyecto2026.web.product.domain.entity.Product;
 import com.proyecto2026.web.product.domain.port.ProductRepository;
+import com.proyecto2026.web.productDetail.domian.ProductDetail;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +30,14 @@ public class CreateProductHandler implements RequestHandler<CreateProductRequest
                 .price(request.getPrice())
                 .image(uniqueFileName)
                 .build();
+
+        ProductDetail detail = ProductDetail.builder()
+                .provider(request.getProvider())
+                .warranty(request.getWarranty())
+                .specifications(request.getSpecifications())
+                .build();
+
+        product.setProductDetail(detail);
 
         Product storedProduct = productRepository.save(product);
         log.info("Created product with id: {}", storedProduct.getId());

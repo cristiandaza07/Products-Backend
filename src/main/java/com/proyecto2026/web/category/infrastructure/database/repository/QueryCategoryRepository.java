@@ -12,4 +12,7 @@ public interface QueryCategoryRepository extends JpaRepository<CategoryEntity, L
 
     @EntityGraph(attributePaths = "products")
     Optional<CategoryEntity> findById(Long id);
+
+    @EntityGraph(attributePaths = "products")
+    Optional<CategoryEntity> findByName(String name);
 }

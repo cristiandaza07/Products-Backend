@@ -3,6 +3,7 @@ package com.proyecto2026.web.product.infrastructure.api;
 import com.proyecto2026.web.common.application.mediator.Mediator;
 import com.proyecto2026.web.common.domain.PaginationQuery;
 import com.proyecto2026.web.common.domain.PaginationResult;
+import com.proyecto2026.web.product.application.command.assignCategory.AssignCategoryRequest;
 import com.proyecto2026.web.product.application.command.create.CreateProductRequest;
 import com.proyecto2026.web.product.application.command.create.CreateProductResponse;
 import com.proyecto2026.web.product.application.command.delete.DeleteProductRequest;
@@ -87,7 +88,7 @@ public class ProductController implements ProductApi {
         return ResponseEntity.ok(productDto);
     }
 
-    @Operation(summary = "Create product", description = "Create product")
+    @Operation(summary = "Create product and product detail", description = "Create product and product detail")
     @PostMapping("")
     public ResponseEntity<Void> saveProduct(@ModelAttribute @Valid CreateProductDto createProductDto) {
 
@@ -132,5 +133,20 @@ public class ProductController implements ProductApi {
         return ResponseEntity.accepted().build();
     }
 
+    @PutMapping("/{productId}/categories/{categoryName}")
+    @Override
+    public ResponseEntity<Void> assignCategory(
+            @PathVariable String categoryName,
+            @PathVariable Long productId) {
 
+        log.info("Assigning category");
+
+        AssignCategoryRequest request = productMapper.mapToAssignCategoryRequest(categoryName, productId);
+
+        mediator.dispatch(request);
+
+        log.info("Category assigned");
+
+        return ResponseEntity.noContent().build();
+    }
 }

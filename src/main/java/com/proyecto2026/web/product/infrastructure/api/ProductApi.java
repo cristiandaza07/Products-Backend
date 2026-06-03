@@ -19,4 +19,7 @@ public interface ProductApi {
     ResponseEntity<Void> updateProduct(@RequestBody UpdateProductDto updateProductDto);
 
     ResponseEntity<Void> deleteProduct(@PathVariable Long id);
+
+    ResponseEntity<Void> assignCategory(@PathVariable String categoryName, Long productId);
+
 }

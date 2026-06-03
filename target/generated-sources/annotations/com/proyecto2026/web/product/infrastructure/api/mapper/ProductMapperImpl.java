@@ -1,5 +1,6 @@
 package com.proyecto2026.web.product.infrastructure.api.mapper;
 
+import com.proyecto2026.web.product.application.command.assignCategory.AssignCategoryRequest;
 import com.proyecto2026.web.product.application.command.create.CreateProductRequest;
 import com.proyecto2026.web.product.application.command.update.UpdateProductRequest;
 import com.proyecto2026.web.product.domain.entity.Product;
@@ -17,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-05-29T22:00:56-0500",
+    date = "2026-05-30T18:46:57-0500",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.10 (Eclipse Adoptium)"
 )
 @Component
@@ -33,13 +34,19 @@ public class ProductMapperImpl implements ProductMapper {
         String description = null;
         Double price = null;
         MultipartFile file = null;
+        String provider = null;
+        String warranty = null;
+        String specifications = null;
 
         name = createProductDto.getName();
         description = createProductDto.getDescription();
         price = createProductDto.getPrice();
         file = createProductDto.getFile();
+        provider = createProductDto.getProvider();
+        warranty = createProductDto.getWarranty();
+        specifications = createProductDto.getSpecifications();
 
-        CreateProductRequest createProductRequest = new CreateProductRequest( name, description, price, file );
+        CreateProductRequest createProductRequest = new CreateProductRequest( name, description, price, file, provider, warranty, specifications );
 
         return createProductRequest;
     }
@@ -96,6 +103,22 @@ public class ProductMapperImpl implements ProductMapper {
         review.score( reviewDto.getScore() );
 
         return review.build();
+    }
+
+    @Override
+    public AssignCategoryRequest mapToAssignCategoryRequest(String categoryName, Long productId) {
+        if ( categoryName == null && productId == null ) {
+            return null;
+        }
+
+        String categoryName1 = null;
+        categoryName1 = categoryName;
+        Long productId1 = null;
+        productId1 = productId;
+
+        AssignCategoryRequest assignCategoryRequest = new AssignCategoryRequest( categoryName1, productId1 );
+
+        return assignCategoryRequest;
     }
 
     private String productProductDetailProvider(Product product) {

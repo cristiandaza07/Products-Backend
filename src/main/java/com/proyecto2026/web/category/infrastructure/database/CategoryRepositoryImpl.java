@@ -32,4 +32,10 @@ public class CategoryRepositoryImpl implements CategoryRepository {
         CategoryEntity save = queryCategoryRepository.save(categoryEntity);
         return categoryEntityMapper.mapToCategory(save);
     }
+
+    @Override
+    public Optional<Category> findByName(String nameCategory) {
+        return queryCategoryRepository.findByName(nameCategory).map(categoryEntityMapper::mapToCategory);
+    }
+
 }

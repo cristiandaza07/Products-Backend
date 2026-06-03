@@ -1,7 +1,7 @@
 package com.proyecto2026.web.category.infrastructure.api;
 
-import com.proyecto2026.web.category.application.command.CreateCategoryRequest;
-import com.proyecto2026.web.category.application.command.CreateCategoryResponse;
+import com.proyecto2026.web.category.application.command.create.CreateCategoryRequest;
+import com.proyecto2026.web.category.application.command.create.CreateCategoryResponse;
 import com.proyecto2026.web.category.domain.entity.Category;
 import com.proyecto2026.web.category.infrastructure.api.dto.CreateCategoryDto;
 import com.proyecto2026.web.category.infrastructure.api.mapper.CategoryMapper;
@@ -45,4 +45,5 @@ public class CategoryController implements CategoryApi {
 
         return ResponseEntity.created(URI.create("/api/v1/category/".concat(category.getId().toString()))).build();
     }
+
 }

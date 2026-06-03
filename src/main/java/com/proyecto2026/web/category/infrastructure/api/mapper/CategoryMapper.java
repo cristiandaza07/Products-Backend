@@ -1,6 +1,6 @@
 package com.proyecto2026.web.category.infrastructure.api.mapper;
 
-import com.proyecto2026.web.category.application.command.CreateCategoryRequest;
+import com.proyecto2026.web.category.application.command.create.CreateCategoryRequest;
 import com.proyecto2026.web.category.infrastructure.api.dto.CreateCategoryDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
