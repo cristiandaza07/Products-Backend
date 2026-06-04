@@ -6,6 +6,7 @@ import com.proyecto2026.web.category.infrastructure.database.entity.CategoryEnti
 import com.proyecto2026.web.category.infrastructure.database.repository.QueryCategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
+@Profile("!test")
 public class CategorySeeder implements CommandLineRunner {
 
     private final QueryCategoryRepository queryCategoryRepository;
