@@ -3,8 +3,12 @@ package com.proyecto2026.web.product.application.command.create;
 import com.proyecto2026.web.common.application.mediator.RequestHandler;
 import com.proyecto2026.web.common.infrastructure.util.FileUtils;
 import com.proyecto2026.web.product.domain.entity.Product;
+import com.proyecto2026.web.product.domain.exception.InvalidLifeStageException;
+import com.proyecto2026.web.product.domain.exception.InvalidSpeciesException;
 import com.proyecto2026.web.product.domain.port.ProductRepository;
+import com.proyecto2026.web.productDetail.domian.LifeStage;
 import com.proyecto2026.web.productDetail.domian.ProductDetail;
+import com.proyecto2026.web.productDetail.domian.TargetSpecies;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +26,17 @@ public class CreateProductHandler implements RequestHandler<CreateProductRequest
     @Override
     public CreateProductResponse handle(CreateProductRequest request) {
 
+        String formattedTargetSpecies = request.getTargetSpecies().toUpperCase().trim();
+        String formattedLifeStage = request.getLifeStage().toUpperCase().trim();
+
+        if (!formattedTargetSpecies.equals("DOG") && !formattedTargetSpecies.equals("CAT")) {
+            throw new InvalidSpeciesException(request.getLifeStage());
+        }
+
+        if (!formattedLifeStage.equals("KID") && !formattedLifeStage.equals("ADULT") && !formattedLifeStage.equals("SENIOR") && !formattedLifeStage.equals("ALL_STAGES")) {
+            throw new InvalidLifeStageException(request.getLifeStage());
+        }
+
         String uniqueFileName = fileUtils.saveProductImage(request.getFile());
 
         Product product = Product.builder()
@@ -32,9 +47,9 @@ public class CreateProductHandler implements RequestHandler<CreateProductRequest
                 .build();
 
         ProductDetail detail = ProductDetail.builder()
-                .provider(request.getProvider())
-                .warranty(request.getWarranty())
-                .specifications(request.getSpecifications())
+                .lifeStage(LifeStage.valueOf(formattedLifeStage))
+                .targetSpecies(TargetSpecies.valueOf(formattedTargetSpecies))
+                .brand(request.getBrand())
                 .build();
 
         product.setProductDetail(detail);

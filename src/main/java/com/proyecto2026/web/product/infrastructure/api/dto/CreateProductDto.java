@@ -27,10 +27,9 @@ public class CreateProductDto {
     //ProductDetail fields
 
     @NotBlank
-    private String provider;
+    private String targetSpecies;
     @NotBlank
-    private String warranty;
+    private String lifeStage;
     @NotBlank
-    @Length(min = 8, max = 255)
-    private String specifications;
+    private String brand;
 }

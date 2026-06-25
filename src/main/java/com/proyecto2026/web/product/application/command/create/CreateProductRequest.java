@@ -13,7 +13,7 @@ public class CreateProductRequest implements Request<CreateProductResponse> {
     private String description;
     private Double price;
     private MultipartFile file;
-    private String provider;
-    private String warranty;
-    private String specifications;
+    private String targetSpecies;
+    private String lifeStage;
+    private String brand;
 }

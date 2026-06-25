@@ -20,7 +20,7 @@ public class UpdateProductDto {
     @DecimalMax(value = "999.99", inclusive = false)
     private Double price;
 
-    private String provider;
+    private String brand;
 
     private ReviewDto review;
 

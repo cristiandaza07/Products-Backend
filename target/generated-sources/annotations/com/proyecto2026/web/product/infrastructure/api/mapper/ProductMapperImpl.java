@@ -8,7 +8,9 @@ import com.proyecto2026.web.product.infrastructure.api.dto.CreateProductDto;
 import com.proyecto2026.web.product.infrastructure.api.dto.ProductDto;
 import com.proyecto2026.web.product.infrastructure.api.dto.ReviewDto;
 import com.proyecto2026.web.product.infrastructure.api.dto.UpdateProductDto;
+import com.proyecto2026.web.productDetail.domian.LifeStage;
 import com.proyecto2026.web.productDetail.domian.ProductDetail;
+import com.proyecto2026.web.productDetail.domian.TargetSpecies;
 import com.proyecto2026.web.review.domain.entity.Review;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-06-16T19:36:04-0500",
+    date = "2026-06-25T01:08:09-0500",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.10 (Eclipse Adoptium)"
 )
 @Component
@@ -34,19 +36,19 @@ public class ProductMapperImpl implements ProductMapper {
         String description = null;
         Double price = null;
         MultipartFile file = null;
-        String provider = null;
-        String warranty = null;
-        String specifications = null;
+        String targetSpecies = null;
+        String lifeStage = null;
+        String brand = null;
 
         name = createProductDto.getName();
         description = createProductDto.getDescription();
         price = createProductDto.getPrice();
         file = createProductDto.getFile();
-        provider = createProductDto.getProvider();
-        warranty = createProductDto.getWarranty();
-        specifications = createProductDto.getSpecifications();
+        targetSpecies = createProductDto.getTargetSpecies();
+        lifeStage = createProductDto.getLifeStage();
+        brand = createProductDto.getBrand();
 
-        CreateProductRequest createProductRequest = new CreateProductRequest( name, description, price, file, provider, warranty, specifications );
+        CreateProductRequest createProductRequest = new CreateProductRequest( name, description, price, file, targetSpecies, lifeStage, brand );
 
         return createProductRequest;
     }
@@ -63,7 +65,7 @@ public class ProductMapperImpl implements ProductMapper {
         updateProductRequest.setName( updateProductDto.getName() );
         updateProductRequest.setDescription( updateProductDto.getDescription() );
         updateProductRequest.setPrice( updateProductDto.getPrice() );
-        updateProductRequest.setProvider( updateProductDto.getProvider() );
+        updateProductRequest.setBrand( updateProductDto.getBrand() );
         updateProductRequest.setReview( mapToReview( updateProductDto.getReview() ) );
         updateProductRequest.setCategoryId( updateProductDto.getCategoryId() );
 
@@ -78,7 +80,15 @@ public class ProductMapperImpl implements ProductMapper {
 
         ProductDto productDto = new ProductDto();
 
-        productDto.setProvider( productProductDetailProvider( product ) );
+        TargetSpecies targetSpecies = productProductDetailTargetSpecies( product );
+        if ( targetSpecies != null ) {
+            productDto.setTargetSpecies( targetSpecies.name() );
+        }
+        LifeStage lifeStage = productProductDetailLifeStage( product );
+        if ( lifeStage != null ) {
+            productDto.setLifeStage( lifeStage.name() );
+        }
+        productDto.setBrand( productProductDetailBrand( product ) );
         productDto.setId( product.getId() );
         productDto.setName( product.getName() );
         productDto.setDescription( product.getDescription() );
@@ -121,12 +131,28 @@ public class ProductMapperImpl implements ProductMapper {
         return assignCategoryRequest;
     }
 
-    private String productProductDetailProvider(Product product) {
+    private TargetSpecies productProductDetailTargetSpecies(Product product) {
         ProductDetail productDetail = product.getProductDetail();
         if ( productDetail == null ) {
             return null;
         }
-        return productDetail.getProvider();
+        return productDetail.getTargetSpecies();
+    }
+
+    private LifeStage productProductDetailLifeStage(Product product) {
+        ProductDetail productDetail = product.getProductDetail();
+        if ( productDetail == null ) {
+            return null;
+        }
+        return productDetail.getLifeStage();
+    }
+
+    private String productProductDetailBrand(Product product) {
+        ProductDetail productDetail = product.getProductDetail();
+        if ( productDetail == null ) {
+            return null;
+        }
+        return productDetail.getBrand();
     }
 
     protected ReviewDto reviewToReviewDto(Review review) {

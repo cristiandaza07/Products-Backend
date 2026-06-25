@@ -11,7 +11,7 @@ public class UpdateProductRequest implements Request<Void> {
     private String name;
     private String description;
     private Double price;
-    private String provider;
+    private String brand;
     private Review review;
     private Long categoryId;
 }

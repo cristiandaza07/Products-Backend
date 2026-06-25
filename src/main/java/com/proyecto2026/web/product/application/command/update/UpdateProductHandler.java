@@ -30,7 +30,7 @@ public class UpdateProductHandler implements RequestHandler<UpdateProductRequest
 
         ProductDetail productDetail = product.getProductDetail();
 
-        productDetail.setProvider(request.getProvider());
+        productDetail.setBrand(request.getBrand());
 
         product.getReviews().add(request.getReview());
 

@@ -4,7 +4,9 @@ import com.proyecto2026.web.category.domain.entity.Category;
 import com.proyecto2026.web.category.infrastructure.database.entity.CategoryEntity;
 import com.proyecto2026.web.product.domain.entity.Product;
 import com.proyecto2026.web.product.infrastructure.database.entity.ProductEntity;
+import com.proyecto2026.web.productDetail.domian.LifeStage;
 import com.proyecto2026.web.productDetail.domian.ProductDetail;
+import com.proyecto2026.web.productDetail.domian.TargetSpecies;
 import com.proyecto2026.web.productDetail.infrastructure.ProductDetailEntity;
 import com.proyecto2026.web.review.domain.entity.Review;
 import com.proyecto2026.web.review.infrastructure.database.entity.ReviewEntity;
@@ -15,7 +17,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-06-16T19:36:05-0500",
+    date = "2026-06-25T01:08:09-0500",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.10 (Eclipse Adoptium)"
 )
 @Component
@@ -129,9 +131,13 @@ public class ProductEntityMapperImpl implements ProductEntityMapper {
         ProductDetailEntity productDetailEntity = new ProductDetailEntity();
 
         productDetailEntity.setId( productDetail.getId() );
-        productDetailEntity.setSpecifications( productDetail.getSpecifications() );
-        productDetailEntity.setWarranty( productDetail.getWarranty() );
-        productDetailEntity.setProvider( productDetail.getProvider() );
+        if ( productDetail.getTargetSpecies() != null ) {
+            productDetailEntity.setTargetSpecies( productDetail.getTargetSpecies().name() );
+        }
+        if ( productDetail.getLifeStage() != null ) {
+            productDetailEntity.setLifeStage( productDetail.getLifeStage().name() );
+        }
+        productDetailEntity.setBrand( productDetail.getBrand() );
 
         return productDetailEntity;
     }
@@ -170,9 +176,13 @@ public class ProductEntityMapperImpl implements ProductEntityMapper {
         ProductDetail.ProductDetailBuilder productDetail = ProductDetail.builder();
 
         productDetail.id( productDetailEntity.getId() );
-        productDetail.specifications( productDetailEntity.getSpecifications() );
-        productDetail.warranty( productDetailEntity.getWarranty() );
-        productDetail.provider( productDetailEntity.getProvider() );
+        if ( productDetailEntity.getTargetSpecies() != null ) {
+            productDetail.targetSpecies( Enum.valueOf( TargetSpecies.class, productDetailEntity.getTargetSpecies() ) );
+        }
+        if ( productDetailEntity.getLifeStage() != null ) {
+            productDetail.lifeStage( Enum.valueOf( LifeStage.class, productDetailEntity.getLifeStage() ) );
+        }
+        productDetail.brand( productDetailEntity.getBrand() );
 
         return productDetail.build();
     }

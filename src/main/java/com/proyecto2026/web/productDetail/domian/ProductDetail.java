@@ -9,9 +9,9 @@ import lombok.Data;
 public class ProductDetail {
 
     private Long id;
-    private String specifications;
-    private String warranty;
-    private String provider;
+    private TargetSpecies targetSpecies;
+    private LifeStage lifeStage;
+    private String brand;
 
     private Product product;
 

@@ -12,9 +12,9 @@ public class ProductDetailEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String specifications;
-    private String warranty;
-    private String provider;
+    private String targetSpecies;
+    private String lifeStage;
+    private String brand;
 
     @OneToOne(mappedBy = "productDetailEntity")
     private ProductEntity productEntity;
