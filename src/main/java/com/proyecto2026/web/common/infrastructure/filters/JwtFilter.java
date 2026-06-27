@@ -42,6 +42,13 @@ public class JwtFilter extends OncePerRequestFilter {
         String token = authorization.substring(7);
 
         try {
+            // If the token is in the blacklist cache, we reject the request immediately
+            if (jwtService.isTokenBlacklisted(token)) {
+                log.error("Token blacklisted");
+                filterChain.doFilter(request, response);
+                return;
+            }
+
             boolean isTokenExpired = jwtService.isTokenExpired(token);
             boolean canBeTokenRenewed = jwtService.canBeTokenRenewed(token);
 

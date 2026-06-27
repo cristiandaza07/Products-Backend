@@ -1,6 +1,8 @@
 package com.proyecto2026.web.common.infrastructure.config;
 
 import com.proyecto2026.web.common.infrastructure.filters.JwtFilter;
+import com.proyecto2026.web.user.application.command.logout.LogoutUserHandler;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,6 +24,7 @@ public class SecurityConfig {
 
     private final JwtFilter jwtFilter;
     private final AuthenticationProvider authenticationProvider;
+    private final LogoutUserHandler logoutUserHandler;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -46,6 +49,14 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+                .logout(logout -> logout
+                        .logoutUrl("/api/v1/users/logout")
+                        .addLogoutHandler(logoutUserHandler) // Ejecuta tu lógica personalizada
+                        .logoutSuccessHandler(
+                                (request, response, authentication) -> {
+                                    response.setStatus(HttpServletResponse.SC_OK);
+                                })
+                )
                 .build();
     }
 

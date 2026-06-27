@@ -17,7 +17,7 @@ public class UpdateProductDto {
     private String description;
 
     @DecimalMin(value = "0.01", inclusive = false)
-    @DecimalMax(value = "999.99", inclusive = false)
+    @DecimalMax(value = "99999.99", inclusive = false)
     private Double price;
 
     private String brand;

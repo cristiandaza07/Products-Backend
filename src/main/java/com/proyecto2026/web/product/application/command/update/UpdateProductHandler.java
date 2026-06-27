@@ -28,8 +28,11 @@ public class UpdateProductHandler implements RequestHandler<UpdateProductRequest
 
         Product product = productRepository.findById(request.getId()).orElseThrow(() -> new ProductNotFoundException(request.getId()));
 
-        ProductDetail productDetail = product.getProductDetail();
+        product.setName(request.getName());
+        product.setDescription(request.getDescription());
+        product.setPrice(request.getPrice());
 
+        ProductDetail productDetail = product.getProductDetail();
         productDetail.setBrand(request.getBrand());
 
         product.getReviews().add(request.getReview());

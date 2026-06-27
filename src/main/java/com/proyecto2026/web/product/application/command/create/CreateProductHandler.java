@@ -30,7 +30,7 @@ public class CreateProductHandler implements RequestHandler<CreateProductRequest
         String formattedLifeStage = request.getLifeStage().toUpperCase().trim();
 
         if (!formattedTargetSpecies.equals("DOG") && !formattedTargetSpecies.equals("CAT")) {
-            throw new InvalidSpeciesException(request.getLifeStage());
+            throw new InvalidSpeciesException(request.getTargetSpecies());
         }
 
         if (!formattedLifeStage.equals("KID") && !formattedLifeStage.equals("ADULT") && !formattedLifeStage.equals("SENIOR") && !formattedLifeStage.equals("ALL_STAGES")) {

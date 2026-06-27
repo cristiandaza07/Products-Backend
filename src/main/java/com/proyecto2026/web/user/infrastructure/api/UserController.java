@@ -41,6 +41,11 @@ public class UserController {
 
     }
 
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout() {
+        return ResponseEntity.ok().build();
+    }
+
     @PostMapping("/register")
     public ResponseEntity<TokenResponseDto> register(@RequestBody RegisterRequestDto registerRequestDto) {
 

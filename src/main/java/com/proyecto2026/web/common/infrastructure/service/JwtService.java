@@ -4,6 +4,7 @@ import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,8 @@ import org.springframework.stereotype.Service;
 import java.security.Key;
 import java.util.Date;
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 
 @Service
@@ -21,6 +24,16 @@ public class JwtService {
     private static final long TOKEN_EXPIRATION = 1000 * 60 * 60 * 24; //1 day
     private static final long REFRESH_TOKEN_WINDOW = 1000 * 60 * 60 * 24 * 7; //7 days
 
+    private final Set<String> blacklistedTokens = ConcurrentHashMap.newKeySet();
+
+    @CachePut(value = "blacklistedTokens", key = "#token")
+    public void blacklistToken(String token) {
+        blacklistedTokens.add(token);
+    }
+
+    public boolean isTokenBlacklisted(String token) {
+        return blacklistedTokens.contains(token);
+    }
 
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = Map.of("authorities", userDetails.getAuthorities()
